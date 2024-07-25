@@ -10,7 +10,7 @@ class ShoppingList(db.Model):
     name = db.Column(db.String(36), nullable=False)
     owner_id = db.Column(db.String(36), db.ForeignKey('users.id'), unique=True, nullable=False)
     owner = db.relationship("User", back_populate='shopping_lists', lazy=True)
-    item =  db.relationship("ShoppingListItem", back_populate='shopping_lists', lazy='dynamic')
+    items =  db.relationship("ShoppingListItem", back_populate='shopping_list', lazy='dynamic')
 
     def __init__(self, name: str, owner_id: str, **kw) -> None:
         super().__init__(**kw)
