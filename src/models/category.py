@@ -4,7 +4,7 @@ class Category(db.Model):
 
     __tablename__ = 'categories'
 
-    name = db.Column(db.Sting(36), primary_key=True, nullable=False)
+    name = db.Column(db.String(36), primary_key=True, nullable=False)
     items = db.relationship('Item', back_populates='category')
 
     def __init__(self, name: str, **kw) -> None:

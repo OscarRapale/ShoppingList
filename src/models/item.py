@@ -9,7 +9,7 @@ class Item(db.Model):
     name = db.Column(db.String(36), nullable=False)
     category_name = db.Column(db.String(36), db.ForeignKey('categories.name'), nullable=False)
     category = db.relationship('Category', back_populates='items')
-    shopping_lists = db.relationship('ShoppingListItem', back_populate='item')
+    shopping_lists = db.relationship('ShoppingListItem', back_populates='item')
 
     def __init__(self, name: str, category_name: str, **kw) -> None:
         super().__init__(**kw)
@@ -71,8 +71,8 @@ class ShoppingListItem(db.Model):
     item_id = db.Column(db.String(36), db.ForeignKey('items.id'), primary_key=True)
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, onupdate=db.func.current_timestamp()) 
-    shopping_list = db.relationship("ShoppingList", back_populate='items')
-    item = db.relationship("Item", back_populate='shopping_lists')
+    shopping_list = db.relationship("ShoppingList", back_populates='items')
+    item = db.relationship("Item", back_populates='shopping_lists')
 
     def __init__(self, shopping_list_id: str, item_id: str, **kw) -> None:
         super().__init__(**kw)

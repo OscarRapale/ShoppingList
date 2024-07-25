@@ -9,7 +9,7 @@ class User(db.Model):
     password_hash = db.Column(db.String(128), nullable=False)
     is_admin = db.Column(db.Boolean, default=False)
     username = db.Column(db.String(36), unique=True, nullable=False)
-    shopping_lists = db.relationship("ShoppingList", back_populate='owner')
+    shopping_lists = db.relationship("ShoppingList", back_populates='owner')
 
 
     def __init__(self, email: str, password: str, is_admin: bool, username: str, **kw):
