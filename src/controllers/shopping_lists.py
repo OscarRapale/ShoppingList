@@ -7,8 +7,8 @@ from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt
 
 shopping_lists_bp = Blueprint("shopping_lists", __name__, url_prefix="/shopping_lists")
 
-@jwt_required()
 @shopping_lists_bp.route("/", methods=["GET"])
+@jwt_required()
 def get_shopping_lists():
 
     claims = get_jwt()
@@ -20,8 +20,8 @@ def get_shopping_lists():
     return [shopping_list.to_dict() for shopping_list in shopping_lists], 200
 
 
-@jwt_required()
 @shopping_lists_bp.route("/", methods=["POST"])
+@jwt_required()
 def create_shopping_list():
 
     data = request.get_json()
@@ -40,8 +40,8 @@ def create_shopping_list():
 
 #@shopping_lists_bp.route("/<shopping_lists_id>", methods=["GET"])(get_place_by_id)
 
+@shopping_lists_bp.route("/<shopping_list_id>", methods=["PUT"])
 @jwt_required()
-@shopping_lists_bp.route("/<shopping_lists_id>", methods=["PUT"])
 def update_shopping_list(shopping_list_id: str):
 
     data = request.get_json()
@@ -63,8 +63,8 @@ def update_shopping_list(shopping_list_id: str):
     return shopping_list.to_dict(), 200
 
 
+@shopping_lists_bp.route("/<shopping_list_id>", methods=["DELETE"])
 @jwt_required()
-@shopping_lists_bp.route("/<shopping_lists_id>", methods=["DELETE"])
 def delete_shopping_list(shopping_list_id: str):
 
     current_user_id = get_jwt_identity()
@@ -88,9 +88,9 @@ def delete_shopping_list(shopping_list_id: str):
     return "", 204
 
 
+@shopping_lists_bp.route("/<shopping_list_id>/items", methods=["POST"])
 @jwt_required()
-@shopping_lists_bp.route("/<shopping_lists_id>/items", methods=["POST"])
-def add_item_to_shooping_list(shopping_list_id: str):
+def add_item_to_shopping_list(shopping_list_id: str):
 
     from src.models.item import Item, ShoppingListItem
 
@@ -114,8 +114,8 @@ def add_item_to_shooping_list(shopping_list_id: str):
     return new_shopping_list_item.to_dict(), 200
 
 
+@shopping_lists_bp.route("/<shopping_list_id>/items", methods=["GET"])
 @jwt_required()
-@shopping_lists_bp.route("/<shopping_lists_id>/items", methods=["GET"])
 def get_items_of_shopping_list(shopping_list_id: str):
 
     from src.models.item import Item, ShoppingListItem

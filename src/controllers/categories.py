@@ -1,12 +1,12 @@
 from flask import abort, request, jsonify, Blueprint
 from src.models.item import Item
 from src.models.category import Category
-from flask_jwt_extended import jwt_required, get_jwt
+from flask_jwt_extended import jwt_required, get_jwt, get_jwt_identity
 
 categories_bp = Blueprint("categories", __name__, url_prefix="/categories")
 
-@jwt_required()
 @categories_bp.route("/", methods=["GET"])
+@jwt_required()
 def get_categories():
 
     categories: list[Category] = Category.get_all()
@@ -14,8 +14,8 @@ def get_categories():
     return [category.to_dict() for category in categories]
 
 
-@jwt_required()
 @categories_bp.route("/<name>", methods=["GET"])
+@jwt_required()
 def get_category_by_name(name: str):
 
     category: Category | None = Category.get(name)
@@ -26,8 +26,8 @@ def get_category_by_name(name: str):
     return category.to_dict()
 
 
-@jwt_required()
 @categories_bp.route("/<name>/items", methods=["GET"])
+@jwt_required()
 def get_category_items(name: str):
 
     category: Category | None = Category.get(name)
@@ -44,10 +44,13 @@ def get_category_items(name: str):
     return category_items
 
 
-@jwt_required()
 @categories_bp.route("/", methods=["POST"])
+@jwt_required()
 def create_category():
 
+    if get_jwt_identity() is None:
+        return jsonify({"msg": "Please login first to acces this page."})
+    
     claims = get_jwt()
     if not claims.get("is_admin"):
         return jsonify({"msg": "Administration right required"}), 403
@@ -63,8 +66,8 @@ def create_category():
     return category.to_dict(), 201
 
 
-@jwt_required()
 @categories_bp.route("/<name>", methods=["DELETE"])
+@jwt_required()
 def delete_category(name: str):
 
     claims = get_jwt()

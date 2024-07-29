@@ -44,9 +44,9 @@ class DBRepository(Repository):
         try:
             self.__session.add(obj)
             self.__session.commit()
-        except SQLAlchemyError:
+        except SQLAlchemyError as e:
             self.__session.rollback()
-            print(f"Error saving object: {SQLAlchemyError}")
+            print(f"Error saving object: {e}")
 
     def update(self, obj: Base) -> None:
         

@@ -40,8 +40,8 @@ def create_user():
     return user.to_dict(), 201
 
 
-@jwt_required()
 @users_bp.route("/<user_id>", methods=["GET"])
+@jwt_required()
 def get_user_by_id(user_id: str):
 
     try:
@@ -55,8 +55,8 @@ def get_user_by_id(user_id: str):
     return user.to_dict(), 200
 
 
-@jwt_required()
 @users_bp.route("/<user_id>", methods=["PUT"])
+@jwt_required()
 def update_user(user_id: str):
 
     current_user_id = get_jwt_identity()
@@ -80,8 +80,8 @@ def update_user(user_id: str):
     return user.to_dict(), 200
 
 
-@jwt_required()
 @users_bp.route("/<user_id>", methods=["DELETE"])
+@jwt_required()
 def delete_user(user_id: str):
     """Deletes a user by ID"""
     current_user_id = get_jwt_identity()

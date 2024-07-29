@@ -5,8 +5,8 @@ from flask_jwt_extended import jwt_required, get_jwt
 
 items_bp = Blueprint("items", __name__, url_prefix="/items")
 
-@jwt_required()
 @items_bp.route("/", methods=["GET"])
+@jwt_required()
 def get_items():
 
     items: list[Item] = Item.get_all()
@@ -14,8 +14,8 @@ def get_items():
     return [item.to_dict() for item in items]
 
 
-@jwt_required()
 @items_bp.route("/", methods=["POST"])
+@jwt_required()
 def create_item():
 
     claims = get_jwt()
@@ -34,8 +34,8 @@ def create_item():
     return item.to_dict(), 201
 
 
-@jwt_required()
 @items_bp.route("/<item_id>", methods=["GET"])
+@jwt_required()
 def get_items_by_id(item_id: str):
 
     item: Item | None = Item.get(item_id)
@@ -46,8 +46,8 @@ def get_items_by_id(item_id: str):
     return item.to_dict()
 
 
-@jwt_required()
 @items_bp.route("/<item_id>", methods=["PUT"])
+@jwt_required()
 def update_item(item_id: str):
 
     claims = get_jwt()
@@ -67,8 +67,8 @@ def update_item(item_id: str):
     return item.to_dict()
 
 
-@jwt_required()
 @items_bp.route("/<item_id>", methods=["DELETE"])
+@jwt_required()
 def delete_item(item_id: str):
 
     claims = get_jwt()

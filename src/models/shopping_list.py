@@ -41,7 +41,7 @@ class ShoppingList(db.Model):
         if not user:
             raise ValueError(f"User with ID {data['owner_id']} not found")
         
-        new_shopping_list = ShoppingList(data=data)
+        new_shopping_list = ShoppingList(name=data['name'], owner_id=data['owner_id'])
 
         db.session.add(new_shopping_list)
         db.session.commit()

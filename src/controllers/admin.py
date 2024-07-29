@@ -4,8 +4,8 @@ from flask_jwt_extended import jwt_required, get_jwt
 
 admin_bp = Blueprint('admin', __name__)
 
-@jwt_required()
 @admin_bp.route('/admin/data', methods=['POST', 'DELETE'])
+@jwt_required()
 def admin_data():
 
     claims = get_jwt()
