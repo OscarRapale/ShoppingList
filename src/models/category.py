@@ -44,3 +44,14 @@ class Category(db.Model):
         category = Category(name)
         repo.save(category)
         return category
+
+    @staticmethod
+    def delete(name: str) -> bool:
+        from src.persistence import repo 
+
+        category = Category.get(name)
+        if category is None:
+            return False
+
+        repo.delete(category)
+        return True

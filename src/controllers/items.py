@@ -62,7 +62,7 @@ def update_item(item_id: str):
         abort(400, str(e))
 
     if not item:
-        abort(404, f"City with ID {item_id} not found")
+        abort(404, f"Item with ID {item_id} not found")
 
     return item.to_dict()
 
@@ -76,6 +76,6 @@ def delete_item(item_id: str):
         return jsonify({"msg": "Administration rights required"}), 403
     
     if not Item.delete(item_id):
-        abort(404, f"City with ID {item_id} not found")
+        abort(404, f"Item with ID {item_id} not found")
 
     return "", 204

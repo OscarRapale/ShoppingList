@@ -1,0 +1,357 @@
+{
+    "categories": [
+        {
+            "name": "Vegetables",
+            "items": [
+                "Carrots",
+                "Broccoli",
+                "Cauliflower",
+                "Spinach",
+                "Kale",
+                "Lettuce",
+                "Romaine",
+                "Arugula",
+                "Cabbage",
+                "Brussels sprouts",
+                "Bell peppers",
+                "Jalapeños",
+                "Tomatoes",
+                "Cucumbers",
+                "Zucchini",
+                "Squash",
+                "Potatoes",
+                "Sweet potatoes",
+                "Onions",
+                "Garlic",
+                "Ginger",
+                "Beets",
+                "Radishes",
+                "Celery",
+                "Green beans",
+                "Peas",
+                "Corn",
+                "Eggplants",
+                "Mushrooms",
+                "Asparagus",
+                "Artichokes",
+                "Leeks",
+                "Scallions",
+                "Shallots",
+                "Turnips",
+                "Rutabagas",
+                "Okra",
+                "Bok choy",
+                "Swiss chard",
+                "Collard greens"
+            ]
+        },
+        {
+            "name": "Fresh Herbs",
+            "items": [
+                "Basil",
+                "Parsley",
+                "Cilantro",
+                "Dill",
+                "Rosemary",
+                "Thyme",
+                "Sage",
+                "Oregano",
+                "Mint",
+                "Chives",
+                "Tarragon",
+                "Marjoram",
+                "Bay leaves",
+                "Lemongrass",
+                "Sorrel",
+                "Lovage",
+                "Chervil",
+                "Lemon balm",
+                "Fennel fronds",
+                "Curry leaves"
+            ]
+        },
+        {
+            "name": "Fruits",
+            "items": [
+                "Apples",
+                "Bananas",
+                "Oranges",
+                "Lemons",
+                "Limes",
+                "Grapes",
+                "Strawberries",
+                "Blueberries",
+                "Raspberries",
+                "Blackberries",
+                "Pineapples",
+                "Mangoes",
+                "Papayas",
+                "Kiwis",
+                "Peaches",
+                "Plums",
+                "Nectarines",
+                "Cherries",
+                "Pears",
+                "Watermelons",
+                "Cantaloupes",
+                "Honeydews",
+                "Grapefruits",
+                "Pomegranates",
+                "Avocados",
+                "Figs",
+                "Dates",
+                "Apricots",
+                "Coconuts",
+                "Cranberries",
+                "Persimmons",
+                "Dragon fruits",
+                "Star fruits",
+                "Passion fruits"
+            ]
+        },
+        {
+            "name": "Meat",
+            "items": [
+                "Ground beef",
+                "Steaks",
+                "Roasts",
+                "Beef ribs",
+                "Beef liver",
+                "Beef stew meat",
+                "Corned beef",
+                "Pork chops",
+                "Pork loin",
+                "Pork shoulder",
+                "Pork ribs",
+                "Ground pork",
+                "Pork tenderloin",
+                "Pork belly",
+                "Ham",
+                "Bacon",
+                "Sausage"
+
+            ]
+        },
+        {
+            "name": "Poultry",
+            "items": [
+                "Whole chicken",
+                "Chicken breasts",
+                "Chicken thighs",
+                "Chicken drumsticks",
+                "Chicken wings",
+                "Ground chicken",
+                "Chicken liver",
+                "Chicken tenders",
+                "Whole turkey",
+                "Turkey breasts",
+                "Ground turkey",
+                "Turkey thighs",
+                "Turkey wings"
+            ]
+        },
+        {
+            "name": "Fish",
+            "items": [
+                "Salmon",
+                "Tuna",
+                "Cod",
+                "Tilapia",
+                "Halibut",
+                "Trout",
+                "Haddock",
+                "Snapper",
+                "Mahi-mahi",
+                "Swordfish",
+                "Sea bass",
+                "Catfish",
+                "Sardines",
+                "Anchovies"
+            ]
+        },
+        {
+            "name": "Seafood",
+            "items": [
+                "Shrimp",
+                "Lobster",
+                "Crab",
+                "Scallops",
+                "Clams",
+                "Mussels",
+                "Oysters"
+            ]
+        },
+        {
+            "name": "Dairy",
+            "items": [
+                "Whole milk",
+                "Skim milk",
+                "2% milk",
+                "1% milk",
+                "Lactose-free milk",
+                "Almond milk",
+                "Soy milk",
+                "Oat milk",
+                "Coconut milk",
+                "Rice milk",
+                "Cheddar",
+                "Mozzarella",
+                "Parmesan",
+                "Swiss",
+                "Gouda",
+                "Blue cheese",
+                "Greek yogurt",
+                "Regular yogurt",
+                "Salted butter",
+                "Unsalted butter",
+                "European-style butter",
+                "Whipped butter",
+                "Margarine",
+                "Plant-based butter",
+                "Heavy cream",
+                "Whipping cream",
+                "Coffee Creamer"
+            ]
+        },
+        {
+            "name": "Beverages",
+            "items": [
+                "Cola",
+                "Lemon-lime soda",
+                "Root beer",
+                "Ginger ale",
+                "Tonic water",
+                "Club soda",
+                "Orange juice",
+                "Apple juice",
+                "Grape juice",
+                "Cranberry juice",
+                "Pineapple juice",
+                "Tomato juice",
+                "Still water",
+                "Sparkling water",
+                "Flavored water",
+                "Mineral water",
+                "Ground coffee",
+                "Whole bean coffee",
+                "Instant coffee",
+                "Black tea",
+                "Green tea",
+                "Herbal tea",
+                "Alchoholic beverages"
+            ]
+        },
+        {
+            "name": "Cereal & Breakfast",
+            "items": [
+                "Cereals",
+                "Oatmeal",
+                "Pancake mix",
+                "Syrup",
+                "Breakfast bars"
+            ]
+        },
+        {
+            "name": "Plant-Based Protein",
+            "items": [
+                "Vegan burgers",
+                "Vegan sausages",
+                "Vegan deli slices",
+                "Vegan meatballs",
+                "Vegan chicken strips",
+                "Vegan bacon",
+                "Vegan jerky"
+            ]
+        },
+        {
+            "name":  "Health & Wellness",
+            "items": [
+                "Vitamins",
+                "Supplements",
+                "Protein bars",
+                "Health foods"
+            ]
+        },
+        {
+            "name": "Personal Care",
+            "items": [
+                "Shampoo and conditioner",
+                "Soap and body wash",
+                "Dental care products",
+                "Deodorant",
+                "Skincare products"
+            ]
+        },
+        {
+            "name": "Household Items",
+            "items": [
+                "Cleaning supplies",
+                "Paper towels",
+                "Toilet paper",
+                "Laundry detergent",
+                "Dish soap"
+            ]
+        },
+        {
+            "name":  "Pet Supplies",
+            "items": [
+                "Pet food",
+                "Pet treats",
+                "Pet toys",
+                "Pet grooming products"
+            ]
+        },
+        {
+            "name":  "Baby Products",
+            "items": [
+                "Baby food",
+                "Diapers",
+                "Baby wipes",
+                "Baby formula"
+            ]
+        },
+        {
+            "name": "Flowers & Plants",
+            "items": [
+                "Fresh flowers",
+                "Potted plants",
+                "Seeds"
+            ]
+        },
+        {
+            "name": "Cosmetics",
+            "items": [
+                "Foundation",
+                "Concealer",
+                "Blush",
+                "Bronzer",
+                "Highlighter",
+                "Eyeshadow",
+                "Eyeliner",
+                "Mascara",
+                "Eyebrow pencil",
+                "Lipstick",
+                "Lip gloss",
+                "Lip balm",
+                "Setting spray",
+                "Makeup remover",
+                "Primer",
+                "Nail polish",
+                "Makeup brushes",
+                "Makeup sponges"
+            ]
+        },
+        {
+            "name": "Miscellaneous",
+            "items": [
+                "Batteries",
+                "Light bulbs",
+                "Kitchen utensils",
+                "First Aid supplies",
+                "Office supplies",
+                "Office supplies",
+                "Party supplies"
+            ]
+        }
+    ]
+}
