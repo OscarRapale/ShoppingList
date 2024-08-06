@@ -49,8 +49,7 @@ def create_db_tables(app):
 
 def register_extensions(app: Flask) -> None:
     """Register the extensions for the Flask app"""
-    cors.init_app(app, resources={r"/api/*": {"origins": "*"}})
-    # Further extensions can be added here
+    cors.init_app(app, resources={r"/*": {"origins": "*"}})
 
 
 def register_routes(app: Flask) -> None:

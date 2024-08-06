@@ -12,7 +12,7 @@ class User(db.Model):
     shopping_lists = db.relationship("ShoppingList", back_populates='owner')
 
 
-    def __init__(self, email: str, password: str, is_admin: bool, username: str, **kw):
+    def __init__(self, email: str, password: str, username: str,  is_admin: bool = False, **kw):
         super().__init__(**kw)
         self.email = email
         self.password_hash = generate_password_hash(password)

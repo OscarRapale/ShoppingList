@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Added for consistent padding/margin behavior */
+}
+
+html {
+    font-size: 12pt;
+    font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif;
+}
+
+
+nav {
+    height: 60px;
+    background: linear-gradient(#41efd1, #00cbb4);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    z-index: 1001;
+    position: relative;
+}
+
+.links-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+nav a, nav button{
+    height: 100%;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+nav a:hover, nav button:hover {
+    background-color: #fced6b;
+}
+
+#logout-button {
+    font-size: medium;
+}
+
+nav .home-link {
+    margin-right: auto;
+    margin-left: 60px;
+}
+
+nav svg {
+    fill: black;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 60px;
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    color: white;
+    transform: translateX(-100%); /* Sidebar hidden by default */
+    transition: transform 0.3s ease; /* Smooth transition */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+#sidebar-active:checked ~ .sidebar {
+    transform: translateX(0); /* Sidebar slides in when active */
+}
+
+#sidebar-active {
+    display: none;
+}
+
+/* Toggle button styles */
+.open-sidebar-button, .close-sidebar-button {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+    transition: transform 0.3s ease; /* Smooth icon transitions */
+}
+
+/* Ensure that the close button is hidden initially */
+.close-sidebar-button {
+    display: none;
+}
+
+#sidebar-active:checked ~ .open-sidebar-button {
+    display: none; /* Hide open button when sidebar is active */
+}
+
+#sidebar-active:checked ~ .close-sidebar-button {
+    display: block; /* Show close button when sidebar is active */
+}
+
+.sidebar {
+    overflow-y: auto;
+}
+
+.sidebar .category-list{
+    text-align: center;
+    line-height: 2;
+}
+
+.sidebar .category-list h2{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
