@@ -38,7 +38,7 @@ def create_shopping_list():
 
     return shopping_list.to_dict(), 201
 
-#@shopping_lists_bp.route("/<shopping_lists_id>", methods=["GET"])(get_place_by_id)
+#@shopping_lists_bp.route("/<shopping_lists_id>", methods=["GET"])
 
 @shopping_lists_bp.route("/<shopping_list_id>", methods=["PUT"])
 @jwt_required()

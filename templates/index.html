@@ -9,17 +9,17 @@
 <body>
     <nav>
         <input type="checkbox" id="sidebar-active">
-        <div class="sidebar">
-            <!-- Categories will be added dynamically -->
-            <div class="category-list">
+
+        <div class="category-sidebar">
+            <div class="category-container">
                 <h2>Categories</h2>
-                <ul>
-                    <li>content</li>
-                    <li>content</li>
-                    <li>content</li>
+                <ul class="category-list">
+                    <!-- Categories will be added dynamically -->
                 </ul>
             </div>
         </div>
+
+        
         <label for="sidebar-active" class="open-sidebar-button">
             <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32" fill="#e8eaed"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
         </label>
@@ -30,10 +30,29 @@
         <div class="links-container"> 
             <a class="home-link" href="#">Home</a>
             <a class="about-link" href="#">About</a>
-            <a class="login-link" href="login.html">Login</a>
+            <a class="login-link" id="login-link" href="login.html">Login</a>
             <button class="logout-button" id="logout-button">Logout</button>
         </div>
     </nav>
+
+    <input type="checkbox" id="items-sidebar-active">
+    <div class="items-sidebar">
+        <div class="items-container">
+            <h2>Items</h2>
+            <ul class="category-items-list">
+
+            </ul>
+        </div>
+    </div>
+
+    <main>
+        <div class="shopping-list-container">
+            <h2>My Shopping List:</h2>
+            <ul class="shopping-list-items"></ul>
+            <button id="create-list-button">Create Shopping List</button>
+        </div>
+    </main>
+    
     <script src="/scripts/script.js"></script>
 </body>
 
