@@ -11,6 +11,11 @@ html {
     font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif;
 }
 
+body {
+    background-image: url(/icons/v1013-p-0015a.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 nav {
     height: 60px;
@@ -244,7 +249,6 @@ nav svg {
     margin-left: 15px;
 
 }
-
 
 #delete-list-button {
     display: block;

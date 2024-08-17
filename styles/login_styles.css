@@ -99,6 +99,10 @@ section a {
     transition: .3s;
 }
 
+.submit-button:hover{
+    transform: scale(1.10);
+}
+
 .input-submit label {
     position: absolute;
     top: 45%;
