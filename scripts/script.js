@@ -1,3 +1,5 @@
+let selectedItems = [];
+
 document.addEventListener('DOMContentLoaded', async () => {
     
     checkAuthentication();
@@ -5,6 +7,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     const token = getCookie('token');
     const categorySidebarCheckbox = document.getElementById('sidebar-active');
     const itemsSidebarCheckbox = document.getElementById('items-sidebar-active');
+    const selectedItemsSidebar = document.getElementById('selected-items-sidebar');
+    
+    const shoppingListId = localStorage.getItem('shoppingListId');
+    const shoppingListContainer = document.getElementById('shopping-list-container');
 
     // Handling sign-up form submission
     const signUpForm = document.getElementById('signup-form');
@@ -104,14 +110,59 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
+    itemsSidebarCheckbox.addEventListener('change', () => {
+        if (itemsSidebarCheckbox.checked) {
+            selectedItemsSidebar.classList.add('active');
+        }
+        else {
+            selectedItemsSidebar.classList.remove('active');
+        }
+    })
+
     const createListButton = document.getElementById('create-list-button');
 
     createListButton.addEventListener('click', async () => {
-        const shoppingListId = await createShoppingList();
-        if (shoppingListId) {
-            console.log(`Shopping list created with ID: ${shoppingListId}`);
+        const newListId = await createShoppingList();
+        if (newListId) {
+            localStorage.setItem('shoppingListId', newListId);
+            console.log('Shopping List created successfully!');
+            shoppingListContainer.classList.remove('hidden');
+            createListButton.style.display = 'none';
+            submitButton.style.display = 'block';
+            deleteListButton.style.display = 'blocke';
+            document.getElementById('submit-items-button').disabled = false;
         }
     });
+
+    const submitButton = document.getElementById('submit-items-button');
+    submitButton.addEventListener('click',  () => {
+        addItemToShoppingList();
+    });
+
+    if(!localStorage.getItem('shoppingListId')) {
+        submitButton.disabled = true;
+    }
+
+    const deleteListButton = document.getElementById('delete-list-button');
+    deleteListButton.addEventListener('click', async () => {
+        const shoppingListId = localStorage.getItem('shoppingListId');
+        if (shoppingListId) {
+            await deleteShoppingList(shoppingListId);
+            localStorage.removeItem('shoppingListId');
+            clearShoppingListItems();
+        }
+    });
+
+    if (shoppingListId) {
+        await fetchShoppingListById(shoppingListId);
+        shoppingListContainer.classList.remove('hidden');
+        createListButton.style.display = 'none';
+        submitButton.style.display = 'block';
+        deleteListButton.style.display = 'blocke';
+    } else {
+        submitButton.style.display = 'none';
+        deleteListButton.style.display = 'none';
+    }
 });
 
 async function createUser(formData) {
@@ -229,15 +280,19 @@ async function fetchCategoryItems(categoryName) {
 // Function to display category items in the sidebar
 function displayItems(items)  {
     const itemsList = document.querySelector('.category-items-list');
+    const selectedItemsSidebar = document.getElementById('selected-items-sidebar');
     itemsList.innerHTML = '';
-
+    
     items.forEach(item => {
         const itemElement = document.createElement('li');
         itemElement.textContent = item.name;
-
+        
         itemElement.addEventListener('click', () => {
-            addItemToShoppingList(item.id);
-            displayShoppingListItems([item]);
+            if (!selectedItems.some(selectedItems => selectedItems.id === item.id)) {
+                selectedItems.push(item);
+                selectedItemsSidebar.classList.remove('hidden');
+                displaySelectedItems();
+            }
         });
 
         itemsList.appendChild(itemElement);
@@ -270,49 +325,90 @@ async function createShoppingList() {
     }
 }
 
-async function addItemToShoppingList(itemId) {
+async function addItemToShoppingList() {
+
     const token = getCookie('token');
     let shoppingListId = localStorage.getItem('shoppingListId');
 
-    if(!shoppingListId) {
-        shoppingListId = await createShoppingList();
-        localStorage.setItem('shoppingListId', shoppingListId);
+    if (!shoppingListId) {
+        alert('Please create a shopping list first')
+        return;
     }
 
     try {
         const response = await fetch(`http://127.0.0.1:5000/shopping_lists/${shoppingListId}/items`, {
             method: 'POST',
-            method: {
+            headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             },
-            body: JSON.stringify({ item_id: itemId })
+            body: JSON.stringify({ item_ids: selectedItems.map(item => item.id) })
         });
 
         if (response.ok) {
-            alert('Item added to shopping list!');
+            const data = await response.json();
+            selectedItems = [];
+            displaySelectedItems();
+            document.getElementById('selected-items-sidebar').classList.add('hidden');
         }
-        else {
-            console.error('Failed to add item:', response.statusText);
-        }
-    }
+
+
+    } 
     catch (error) {
         console.error('Error adding item to shopping list:', error);
     }
+}
 
+function displaySelectedItems() {
+    const selectedItemsContainer = document.querySelector('.selected-items-list');
+    selectedItemsContainer.innerHTML = '';
+
+    selectedItems.forEach(item => {
+        const itemElement = document.createElement('li');
+        itemElement.textContent = `${item.name}`;
+
+        selectedItemsContainer.appendChild(itemElement);
+    });
+}
+
+async function fetchShoppingListById(shoppingListId) {
+    const token = getCookie('token');
+    
+    try {
+        const response = await fetch(`http://127.0.0.1:5000/shopping_lists/${shoppingListId}/items`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        
+        if (response.ok) {
+            const items = await response.json();
+            displayShoppingListItems(items); // Display the items
+        } else {
+            console.error('Failed to fetch shopping list:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error fetching shopping list:', error);
+    }
 }
 
 function displayShoppingListItems(items) {
+    const shoppingListId = localStorage.getItem('shoppingListId');
     const shoppingListItems = document.querySelector('.shopping-list-items');
+    shoppingListItems.innerHTML = '';  // Clear existing items
 
     items.forEach(item => {
         const itemElement = document.createElement('li');
 
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
-        checkbox.id = 'shopping-list-checkbox'
+        checkbox.checked = item.checked;  // Set the checkbox status based on the fetched data
+        checkbox.id = 'shopping-list-checkbox';
         checkbox.addEventListener('change', () => {
             itemElement.style.textDecoration = checkbox.checked ? 'line-through' : 'none';
+            updateItemStatus(item.id, checkbox.checked);  // Update status in the backend
         });
 
         const label = document.createElement('label');
@@ -323,4 +419,54 @@ function displayShoppingListItems(items) {
 
         shoppingListItems.appendChild(itemElement);
     });
+}
+
+async function updateItemStatus(itemId, checkedStatus) {
+    const token = getCookie('token');
+
+    try {
+        const response = await fetch(`http://127.0.0.1:5000/shopping_lists/items/${itemId}/status`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ checked: checkedStatus })
+        });
+
+        if (!response.ok) {
+            console.error('Failed to update item status:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error updating item status:', error);
+    }
+}
+
+
+function clearShoppingListItems() {
+    const shoppingListItems = document.querySelector('.shopping-list-items');
+    shoppingListItems.innerHTML = '';
+}
+
+async function deleteShoppingList(shoppingListId) {
+    const token = getCookie('token');
+
+    try {
+        const response = await fetch(`http://127.0.0.1:5000/shopping_lists/${shoppingListId}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (response.ok) {
+            console.log('Shopping list deleted successfully.');
+        }
+        else {
+            console.error('Failed to delete shopping list:', response.statusText);
+        }
+    }
+    catch (error) {
+        console.error('Error deleting shopping list:', error);
+    }
 }

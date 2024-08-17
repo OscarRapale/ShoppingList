@@ -59,6 +59,15 @@ nav svg {
     fill: black;
 }
 
+.intro {
+    text-align: left;
+    margin-top: 70px;
+    background: linear-gradient(#41efd1, #00cbb4, #fced6b);
+    display: inline-block;
+    padding: 20px;
+    border-radius: 30px
+}
+
 /* Sidebar Styles */
 .category-sidebar {
     position: fixed;
@@ -136,7 +145,7 @@ nav svg {
     position: fixed;
     top: 60px;
     width: 250px;
-    height: 100%;
+    height: auto;
     background-color: #333;
     color: white;
     transform: translateX(-100%); /* Sidebar hidden by default */
@@ -174,7 +183,7 @@ nav svg {
     display: none;
 }
 
-.shopping-list-container {
+#shopping-list-container {
     background-color: #f6f5f4;
     border: 1px solid #ddd;
     border-radius: 10px;
@@ -190,7 +199,7 @@ nav svg {
     margin-top: 10rem;
 }
 
-.shopping-list-container h2 {
+#shopping-list-container h2 {
     margin-bottom: 30px;
     text-decoration: underline;
 }
@@ -207,6 +216,10 @@ nav svg {
     color: #00cbb4;
     cursor: pointer;
     text-decoration: underline;
+}
+
+.hidden {
+    display: none;
 }
 
 #create-list-button {
@@ -231,3 +244,80 @@ nav svg {
     margin-left: 15px;
 
 }
+
+
+#delete-list-button {
+    display: block;
+    padding: 20px;
+    background-color: #e6596b;
+    color: black;
+    text-decoration: none;
+    border-radius: 100px;
+    cursor: pointer;
+    margin: 10px auto;
+    border: none;
+    font-size: 20px;
+}
+
+#delete-list-button:hover {
+    transform: scale(1.10);
+    background-color: #555;
+}
+
+#selected-items-sidebar {
+    position: fixed;
+    top: 60px;
+    width: 250px;
+    height: auto;
+    background-color: #333;
+    color: white;
+    transform: translateX(100%); /* Sidebar hidden by default */
+    transition: transform 0.75s ease; /* Smooth transition */
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    left: 15.1rem;
+    overflow-y: auto;
+    max-height: calc(100% - 60px);
+    text-align: center;
+}
+
+
+#selected-items-sidebar.active {
+    transform: translateX(0);
+}
+
+#selected-items-sidebar h2{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.selected-items-list li {
+    font-size: 20px;
+}
+
+.selected-items-list li:hover {
+    color: #00cbb4;
+    text-decoration: underline;
+}
+
+#submit-items-button {
+    display: block;
+    padding: 20px;
+    background-color: #00cbb4;
+    color: black;
+    text-decoration: none;
+    border-radius: 100px;
+    cursor: pointer;
+    margin: 10px auto;
+    margin-top: 30px;
+    border: none;
+    font-size: 20px;
+}
+
+#submit-items-button:hover {
+    transform: scale(1.10);
+    background-color: #fced6b;
+}
+
+

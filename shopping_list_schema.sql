@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS items (
 CREATE TABLE IF NOT EXISTS shopping_lists (
     id VARCHAR(36) PRIMARY KEY,
     name VARCHAR(36) NOT NULL,
-    owner_id VARCHAR(36),
+    owner_id VARCHAR(36) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (owner_id) REFERENCES users(id)
@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS shopping_lists (
 CREATE TABLE IF NOT EXISTS shopping_list_items (
     shopping_list_id VARCHAR(36),
     item_id VARCHAR(36),
+    checked BOOLEAN DEFAULT FALSE,
     PRIMARY KEY (shopping_list_id, item_id),
     FOREIGN KEY (shopping_list_id) REFERENCES shopping_lists(id),
     FOREIGN KEY (item_id) REFERENCES items(id)

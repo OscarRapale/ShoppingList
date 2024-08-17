@@ -69,16 +69,18 @@ class ShoppingListItem(db.Model):
 
     shopping_list_id = db.Column(db.String(36), db.ForeignKey('shopping_lists.id'), primary_key=True)
     item_id = db.Column(db.String(36), db.ForeignKey('items.id'), primary_key=True)
+    checked = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, onupdate=db.func.current_timestamp()) 
     shopping_list = db.relationship("ShoppingList", back_populates='items')
     item = db.relationship("Item", back_populates='shopping_lists')
 
-    def __init__(self, shopping_list_id: str, item_id: str, **kw) -> None:
+    def __init__(self, shopping_list_id: str, item_id: str, checked: bool = False, **kw) -> None:
         super().__init__(**kw)
 
         self.shopping_list_id = shopping_list_id
         self.item_id = item_id
+        self.checked = checked
 
     def to_dict(self) -> dict:
 
@@ -86,6 +88,7 @@ class ShoppingListItem(db.Model):
             "id": self.id,
             "shopping_list_id": self.shopping_list_id,
             "item_id": self.item_id,
+            "checked": self.checked,
             "created_at": self.created_at.isoformat(),
             "updated_at": self.updated_at.isoformat(),
         }

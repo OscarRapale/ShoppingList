@@ -8,7 +8,7 @@ class ShoppingList(db.Model):
     __tablename__  = 'shopping_lists'
 
     name = db.Column(db.String(36), nullable=False)
-    owner_id = db.Column(db.String(36), db.ForeignKey('users.id'), unique=True, nullable=False)
+    owner_id = db.Column(db.String(36), db.ForeignKey('users.id'), unique=False, nullable=False)
     owner = db.relationship("User", back_populates='shopping_lists', lazy=True)
     items =  db.relationship("ShoppingListItem", back_populates='shopping_list', lazy='dynamic')
 

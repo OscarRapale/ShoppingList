@@ -35,6 +35,12 @@
         </div>
     </nav>
 
+    <div class="intro">
+        <h1>What are we buying today?</h1>
+        <h3>Click "Create Shopping List" to start picking items from different categories clicking (☰) the side menu! <br>
+        When you are ready, click "Add Item" to add the items to your shopping list.</h3>
+    </div>
+
     <input type="checkbox" id="items-sidebar-active">
     <div class="items-sidebar">
         <div class="items-container">
@@ -43,13 +49,22 @@
 
             </ul>
         </div>
-    </div>
 
+    </div>
+    <div id="selected-items-sidebar" class="hidden">
+        <h2>Add These Items?</h2>
+            <ul class="selected-items-list">
+
+            </ul>
+        <button id="submit-items-button">Add Item</button>
+    </div>
+    
     <main>
-        <div class="shopping-list-container">
+        <div id="shopping-list-container" class="hidden">
             <h2>My Shopping List:</h2>
             <ul class="shopping-list-items"></ul>
             <button id="create-list-button">Create Shopping List</button>
+            <button id="delete-list-button">Delete Shopping List</button>
         </div>
     </main>
     

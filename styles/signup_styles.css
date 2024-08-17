@@ -112,3 +112,14 @@ section a {
     margin-top: 10px;
     display: none;
 }
+
+.sign-in-link{
+    text-align: center;
+    font-size: 15px;
+    margin-top: 20px;
+}
+
+.sign-in-link  a{
+    color: #000;
+    font-weight: 600;
+}

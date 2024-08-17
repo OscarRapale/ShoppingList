@@ -1,6 +1,6 @@
 from flask import request, abort, jsonify, Blueprint
 from src.models.item import Item
-from flask_jwt_extended import jwt_required, get_jwt
+from flask_jwt_extended import jwt_required, get_jwt, get_jwt_identity
 
 
 items_bp = Blueprint("items", __name__, url_prefix="/items")
